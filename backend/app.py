@@ -82,6 +82,7 @@ def select():
                 processing.construct_image(f_mag, s_angle, filter, 0)
             else:  # 1st phase, 2nd mag
                 processing.construct_image(s_mag, f_angle, filter, 0)
+
         else:  # crop magnitude or phase
             if data['flag']:  # 1st mag, 2nd phase
                 processing.construct_image(f_image.magnitude, s_image.angle, filter,
@@ -94,7 +95,7 @@ def select():
 
 
 @app.route('/api/gray', methods=['GET', 'POST'])
-def construct():
+def gray():
     if request.method == 'GET':
         processing.counter.resultId += 1
         if len(processing.db.fft_images) == 0:
