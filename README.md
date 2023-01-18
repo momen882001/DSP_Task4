@@ -41,7 +41,9 @@ git clone https://github.com/momen882001/DSP_Task4.git
 
 ### Run the backend
 
-open the terminal and run these commands
+First create folder in backend folder and name it "files"
+<br>
+Then open the terminal and run these commands
 
 1 - Prepare Requirements
 

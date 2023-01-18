@@ -47,7 +47,7 @@ def magnitude_angle(image):
 def construct_image(magnitude, angle, filter, mode=1, **kwargs):
     croped_magnitude = np.copy(magnitude)
     croped_angle = np.copy(angle)
-    if mode: #crop in mag or phase
+    if mode:  # crop in mag or phase
         cropMag = kwargs['cropMag']
         cropPhase = kwargs['cropPhase']
         croped_magnitude = crop_2d_img(magnitude, cropMag, filter)
@@ -59,27 +59,25 @@ def construct_image(magnitude, angle, filter, mode=1, **kwargs):
     image_combined = np.abs(np.fft.ifft2(combined))
     image_combined = cv2.equalizeHist(image_combined.astype(np.uint8))
 
-    cv2.imwrite('../backend/files/images/result.png', image_combined)
+    cv2.imwrite('../backend/files/result.png', image_combined)
     return image_combined
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 
 def crop_2d_img(image, data, filter):
     if(data['height'] == 0 and data['width'] == 0) or (int(data['height']) == 100 and int(data['width'] == 100)):
-        return image  
+        return image
 
     x = int((data['x']/100)*1200)
     y = int((data['y']/100)*1200)
     height = int((data['height']/100)*1200)
     width = int((data['width']/100)*1200)
 
-
-    if filter == 1: # select inside
+    if filter == 1:  # select inside
         cutted_img = np.zeros_like(image)
         cutted_img[y:y+height, x:x+width] = image[y:y+height, x:x+width]
-    else: # select outside
+    else:  # select outside
         cutted_img = np.copy(image)
         cutted_img[y:y+height, x:x+width] = 0
 
     return cutted_img
-

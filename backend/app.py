@@ -7,7 +7,7 @@ import processing
 from image import *
 from fft_image import *
 
-IMG_FOLDER = '.\\files\images'
+IMG_FOLDER = '.\\files'
 
 app = Flask(__name__)
 app.config['IMG_FOLDER'] = IMG_FOLDER
@@ -104,6 +104,6 @@ def construct():
         print(imgId)
         image = processing.db.fft_images[imgId]
         grayImage = image.image
-        cv2.imwrite('../backend/files/images/gray.png', grayImage)
+        cv2.imwrite('../backend/files/gray.png', grayImage)
 
     return {'gray_url': 'http://127.0.0.1:5000/api/img?img=gray'+str(processing.counter.resultId)}
